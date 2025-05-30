@@ -189,6 +189,7 @@ export default function Portfolio() {
             "Wordpress",
             "Drupal",
             "Umbraco",
+            "AWS"
           ].map((skill, index) => (
             <li key={index}>{skill}</li>
           ))}
