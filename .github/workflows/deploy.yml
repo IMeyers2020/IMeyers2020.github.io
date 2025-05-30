@@ -26,7 +26,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/gh-pages-deploy-action@v4
         with:
-          branch: gh-pages           # Target branch
-          folder: out                # Folder to publish (change to your build output folder)
+          branch: gh-pages
+          folder: out
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: GitHub Action Deployment
