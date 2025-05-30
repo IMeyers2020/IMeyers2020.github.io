@@ -1,25 +1,32 @@
-    name: Deploy to GitHub Pages
-    on:
-      push:
-        branches: [main]
-    jobs:
-      deploy:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout branch
-            uses: actions/checkout@v3
-          - name: Setup Node.js
-            uses: actions/setup-node@v3
-            with:
-              node-version: 16
-          - name: Install dependencies
-            run: npm install
-          - name: Build the site
-            run: npm run build
-          - name: Deploy to GitHub Pages
-            uses: JamesIves/gh-pages-deploy-action@master
-            with:
-              BRANCH: gh-pages
-              FOLDER: out
-              TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              MESSAGE: GitHub Action Deployment
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/gh-pages-deploy-action@v4
+        with:
+          branch: gh-pages           # Target branch
+          folder: out                # Folder to publish (change to your build output folder)
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: GitHub Action Deployment
