@@ -9,24 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build the site
+      - name: Build and export Next.js site
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/gh-pages-deploy-action@v4
+        uses: JamesIves/gh-pages-deploy-action@v4.4.3
         with:
           branch: gh-pages
           folder: out
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: GitHub Action Deployment
